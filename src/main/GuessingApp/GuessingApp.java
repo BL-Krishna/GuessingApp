@@ -1,21 +1,27 @@
 import java.util.Scanner;
 
 /**
- * GuessingApp Use Case 1: Game Initialization
- * <p>
- * This class serves as the application entry point.
- * It initializes the game configuration and displaysgame rules.
- * <p>
- * No users input or gameplay logic is implemented at this stage.
+ * MAIN CLASS
+ *
+ * Use Case 5: Error Handling & Validation
+ *
+ * This class coordinates the game execution while ensuring
+ * all user inputs are safely validated before processing.
+ *
+ * Responsibilities:
+ * - Initialize game configuration
+ * - Accept user input
+ * - Validate input using ValidationService
+ * - Handle game flow without crashing on invalid input
  *
  * @author Krishna Ch
- * @version 2.0
+ * @version 4.0
  */
 public class GuessingApp {
 
     public static final String CORRECT = "CORRECT";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InvalidInputException {
 
         System.out.println("Welcome to the Guessing App");
         GameConfig gameConfig = new GameConfig();
@@ -31,7 +37,7 @@ public class GuessingApp {
          */
         while (attempts < gameConfig.getMAX_ATTEMPTS()) {
             System.out.println("Enter your guess: ");
-            int guess = sc.nextInt();
+            int guess = ValidationService.validateInput(sc.nextLine());
             attempts++;
 
             String result = GuessValidator.validateGuess(guess, gameConfig.getTargetNumber());
