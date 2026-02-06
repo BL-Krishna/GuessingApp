@@ -1,1 +1,3 @@
 Player: krishna, Attempts: 7, Result: WIN
+Player: Krishna, Attempts: 7, Result: WIN
+Player: Dattu, Attempts: 7, Result: WIN

@@ -2,33 +2,35 @@ import java.util.Scanner;
 
 /**
  * MAIN CLASS
- *
- * Use Case 5: Game Result Storage
- *
- * This class coordinates the complete game flow
- * and persists the final result after completion
- *
+ +
+ * Use Case 6: Game Restart & Exit
+ * This class coordinates the complete game lifecycle,
+ * allowing the player to replay or exit gracefully.
  * Responsibilities:
- * - Initialize game configuration
- * - Accept user input
- * - Generate hints when applicable
- * - Storage game result at the end
+ * Start a new game session
+ * Execute the guessing flow
+ * Persist game results
+ * Restart or exit based on user choice
  *
  * @author Krishna Ch
- * @version 5.0
+ * @version 6.0
  */
 public class GuessingApp {
 
     public static final String CORRECT = "CORRECT";
 
     public static void main(String[] args) throws InvalidInputException {
+        Scanner sc = new Scanner(System.in);
+        boolean restart;
 
         System.out.println("===========================");
         System.out.println("Welcome to the Guessing App");
         System.out.println("===========================\n");
 
-        Scanner sc = new Scanner(System.in);
-
+        /* outer loop controls whether
+         * a new game session should start.
+         */
+    do {
         /*
          * Player name is captured once
          * and stored along with game results.
@@ -49,8 +51,8 @@ public class GuessingApp {
         boolean win = false;
 
         /*
-         * Game loop runs until the player exhausts the
-         * maximum attempts
+         * Inner loop handles the guessing
+         * logic for a single game session.
          */
         while (attempts < gameConfig.getMAX_ATTEMPTS()) {
 
@@ -88,6 +90,11 @@ public class GuessingApp {
          */
         StorageService.saveResult(player, attempts, win);
 
-        sc.close();
+        /*
+         * Player decides whether to
+         * restart the game or exit.
+         */
+        restart = GameController.restartGame(sc);
+      }while (restart);
     }
 }
