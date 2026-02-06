@@ -1,13 +1,11 @@
 import java.util.Scanner;
 
 /**
- * GuessingApp Use Case 1: Game Initialization
- * <p>
- * This class serves as the application entry point.
- * It initializes the game configuration and displaysgame rules.
- * <p>
- * No users input or gameplay logic is implemented at this stage.
- *
+ * Coordinates the game flow:
+ * 1. Initialize game
+ * 2. Accept user guesses
+ * 3. Validate guesses
+ * 4. Stop when game ends
  * @author Krishna Ch
  * @version 2.0
  */
