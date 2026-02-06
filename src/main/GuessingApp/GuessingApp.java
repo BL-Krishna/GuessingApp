@@ -23,6 +23,7 @@ public class GuessingApp {
 
         Scanner sc = new Scanner(System.in);
         int attempts = 0;
+        int hintCount = 0;
 
         /*
          * Game loop runs until the player exhausts the
@@ -44,6 +45,14 @@ public class GuessingApp {
             if (CORRECT.equals(result)) {
                 break;
             }
+
+            /*
+             * if the incorrect number is guessed give hint.
+             */
+
+            hintCount++;
+            String hint = HintService.generateHint(gameConfig.getTargetNumber(),hintCount);
+            System.out.println(hint);
         }
     }
 }
